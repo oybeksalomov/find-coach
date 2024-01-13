@@ -4,24 +4,24 @@
     </section>
 
     <section>
-        <div class="controls">
-            <button>Refresh</button>
-            <router-link to='/register'>Register as coach</router-link>
-        </div>
-        <ul v-if="hasCoaches">
-            Murabbiylar ro'yhati
-            <!-- <li v-for="coache of filteredCoaches" :key="coache.id">{{ coache.firstName }}</li> -->
-            <CoachItem  
-                v-for="coach of filteredCoaches" 
-                :key="coach.id"
-                :id="coach.id"
-                :firstName="coach.firstName"
-                :lastName="coach.lastName"
-                :rate="coach.hourlyRate"
-                :areas="coach.areas"
-            ></CoachItem>
-        </ul>
-        <div v-else>Murabbiy yo'q</div>
+        <base-card>
+            <div class="controls">
+                <base-button mode="outline">Refresh</base-button>
+                <base-button link to='/register'>Register as coach</base-button>
+            </div>
+            <ul v-if="hasCoaches">
+                <CoachItem  
+                    v-for="coach of filteredCoaches" 
+                    :key="coach.id"
+                    :id="coach.id"
+                    :firstName="coach.firstName"
+                    :lastName="coach.lastName"
+                    :rate="coach.hourlyRate"
+                    :areas="coach.areas"
+                ></CoachItem>
+            </ul>
+            <div v-else>Murabbiy yo'q</div>
+        </base-card>
     </section>
 </template>
 
@@ -31,6 +31,7 @@ import CoachItem from '../../components/coaches/CoachItem.vue'
 export default {
     components: {CoachItem},
     computed: {
+
         filteredCoaches() {
             return this.$store.getters['coaches/coaches']
         },
