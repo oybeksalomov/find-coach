@@ -33,7 +33,8 @@ export default {
         const responseData = await response.json()
 
         if(!response.ok) {
-            //error
+            const error = new Error(responseData.message || "Ma'lumotlarni yuklashda xatolik yuz berdi.")
+            throw error
         }
 
         const coaches = []
