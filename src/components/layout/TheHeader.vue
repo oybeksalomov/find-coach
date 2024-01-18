@@ -8,8 +8,14 @@
             <li>
                 <router-link to="/coaches">Hamma Murabbiylar</router-link>
             </li>
-            <li>
-                <router-link to="/requests">Hamma So'rovlar</router-link>
+            <li v-if="isLoggedIn">
+                <router-link  to="/requests">Hamma So'rovlar</router-link>
+            </li>
+            <li v-if="isLoggedIn">
+                <base-button @click="logout">Logout</base-button>
+            </li>
+            <li v-else>
+                <router-link to="/auth">Login</router-link>
             </li>
         </ul>
     </nav>
@@ -18,7 +24,17 @@
 
 <script>
     export default {
-        
+        computed: {
+            isLoggedIn() {
+                return this.$store.getters.isAuthenticated
+            }
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch('logout')
+                this.$router.replace('/coaches')
+            }
+        }
     }
 </script>
 

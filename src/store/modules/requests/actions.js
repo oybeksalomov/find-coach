@@ -10,7 +10,6 @@ export default {
         });
     
         const responseData = await response.json();
-    
         if (!response.ok) {
           const error = new Error(responseData.message || 'Failed to send request.');
           throw error;
@@ -23,11 +22,16 @@ export default {
     },
     async fetchRequests(context) {
         const coachId = context.rootGetters.userId;
-        const response = await fetch(`https://https://vue-find-coach-4368c-default-rtdb.firebaseio.com/requests/${coachId}.json`);
+        const token = context.rootGetters.token
+        const response = await fetch(
+          `https://vue-find-coach-4368c-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=` + 
+          token
+        );
+        
         const responseData = await response.json();
-        console.log(responseData)
+
         if (!response.ok) {
-          const error = new Error(responseData.message || 'Failed to fetch requests.');
+          const error = new Error(responseData.message || "So'rovlarni yuklashda xatolik yuz berdi");
           throw error;
         }
     
@@ -42,7 +46,7 @@ export default {
           };
           requests.push(request);
         }
-        console.log(requests)
+      
         context.commit('setRequests', requests);
     }
 }

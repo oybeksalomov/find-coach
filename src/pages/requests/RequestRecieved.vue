@@ -1,6 +1,6 @@
 <template>
   <div>
-    <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+    <base-dialog :show="!!error" title="Xatolik yuz berdi!" @close="handleError">
       <p>{{ error }}</p>
     </base-dialog>
     <section>
@@ -44,9 +44,6 @@ export default {
       return this.$store.getters['requests/hasRequests'];
     },
   },
-  created() {
-    this.loadRequests();
-  },
   methods: {
     async loadRequests() {
       this.isLoading = true;
@@ -60,6 +57,9 @@ export default {
     handleError() {
       this.error = null;
     },
+  },
+  created() {
+    this.loadRequests();
   },
 };
 </script>
