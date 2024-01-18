@@ -4,7 +4,7 @@ export default {
           userEmail: payload.email,
           message: payload.message
         };
-        const response = await fetch(`https://vue-http-demo-85e9e.firebaseio.com/requests/${payload.coachId}.json`, {
+        const response = await fetch(`https://vue-find-coach-4368c-default-rtdb.firebaseio.com/requests/${payload.coachId}.json`, {
           method: 'POST',
           body: JSON.stringify(newRequest)
         });
@@ -20,12 +20,12 @@ export default {
         newRequest.coachId = payload.coachId;
     
         context.commit('addRequest', newRequest);
-      },
-      async fetchRequests(context) {
+    },
+    async fetchRequests(context) {
         const coachId = context.rootGetters.userId;
-        const response = await fetch(`https://vue-http-demo-85e9e.firebaseio.com/requests/${coachId}.json`);
+        const response = await fetch(`https://https://vue-find-coach-4368c-default-rtdb.firebaseio.com/requests/${coachId}.json`);
         const responseData = await response.json();
-    
+        console.log(responseData)
         if (!response.ok) {
           const error = new Error(responseData.message || 'Failed to fetch requests.');
           throw error;
@@ -42,7 +42,7 @@ export default {
           };
           requests.push(request);
         }
-    
+        console.log(requests)
         context.commit('setRequests', requests);
     }
 }

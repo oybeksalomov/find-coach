@@ -16,6 +16,7 @@ const router = createRouter({
         },
         {path: '/register', component: () => import('./pages/coaches/CoachRegistration.vue')},
         {path: '/requests', component: () => import('./pages/requests/RequestRecieved.vue')},
+        {path: '/auth', component: () => import('./pages/auth/UserAuth.vue')},
         {path: '/:notFound(.*)', component: null}
     ]
 })

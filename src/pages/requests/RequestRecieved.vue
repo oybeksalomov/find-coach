@@ -46,7 +46,6 @@ export default {
   },
   created() {
     this.loadRequests();
-    console.log(this.$store.getters['requests/requests'])
   },
   methods: {
     async loadRequests() {
